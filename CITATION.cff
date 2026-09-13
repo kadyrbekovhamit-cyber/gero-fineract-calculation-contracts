@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite this version-pinned public calculation case study."
+title: "GERO financial calculation checks: a scoped Apache Fineract case study"
+authors:
+  - family-names: Kadirbekov
+    given-names: Xamit
+version: 0.1.0
+date-released: 2026-09-13
+license: Apache-2.0
+repository-code: "https://github.com/kadyrbekovhamit-cyber/gero-fineract-calculation-contracts"

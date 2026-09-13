@@ -1,0 +1,35 @@
+1
+00:00:00,000 --> 00:00:03,414
+Seven days out of fourteen should be one half.
+
+2
+00:00:03,414 --> 00:00:06,827
+In a tested grace-period calculation, the result was two.
+
+3
+00:00:07,127 --> 00:00:11,138
+GERO turns written calculation rules into software checks.
+
+4
+00:00:11,138 --> 00:00:18,157
+We check your chosen version, test edge cases, document mismatches, and verify candidate fixes.
+
+5
+00:00:18,457 --> 00:00:26,824
+In this public example, twenty-five core checks passed on corrected code, plus one hundred forty-four additional calendar cases.
+
+6
+00:00:27,124 --> 00:00:28,461
+These are component tests.
+
+7
+00:00:28,461 --> 00:00:31,137
+They do not show losses at a bank.
+
+8
+00:00:31,437 --> 00:00:36,062
+Your team gets a clear report and executable tests to repeat after updates.
+
+9
+00:00:36,062 --> 00:00:39,264
+See the public evidence at GERO dot U Z.

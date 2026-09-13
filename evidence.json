@@ -1,0 +1,553 @@
+{
+  "schema_version": 1,
+  "publication_copy_prepared": "2026-09-13",
+  "project": "GERO Financial Calculation Contracts",
+  "upstream": "https://github.com/apache/fineract",
+  "scope": "Native component checks on pinned commits; no customer deployment or production transaction tested",
+  "common_cases_per_revision": 25,
+  "additional_cases_on_local_correction_only": 144,
+  "unmodified_full_grid": "No complete result; an earlier expanded historical run exhausted the test-worker heap. The complete expansion applies only to the local correction.",
+  "provenance": "Selected fields from locally verified native reports. This public summary is not a replacement for original XML/logs. Report hashes below identify the original private execution records; they are not third-party signatures.",
+  "runs": {
+    "baseline": {
+      "commit": "e4474a0f4a4c65a75e7758e47db1fd277e5fcfef",
+      "mode": "unmodified_production_source",
+      "original_report_sha256": "710ea4d9a7afa30eed3b4a790fbc1ae8fc9b9a6b5d0dcd19c01ea72d6ed3c0b7",
+      "rules": [
+        {
+          "id": "inverse",
+          "source_path": "fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctions.java",
+          "source_sha256": "e4aaa644bafd30e06257fa296a8d1daf1b870b278ee2aa3a4afea170a5ed8f9d",
+          "test_sha256": "2ca4f507b32e46f1cea6048b7b909e5ca59c8ef679d8140722f5a1fa43832572",
+          "result": "known_defect_reproduced",
+          "counts": {
+            "tests": 3,
+            "passed": 1,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "nopShouldInvertPmtAtZeroInterest()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nopShouldInvertPmtWithInterest()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: expected: <6> but was: <5>"
+            },
+            {
+              "name": "nopShouldInvertPmtForAnnuitiesDueWithFutureValue()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: expected: <12> but was: <7>"
+            }
+          ]
+        },
+        {
+          "id": "grace",
+          "source_path": "fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/DefaultPaymentPeriodsInOneYearCalculator.java",
+          "source_sha256": "f2d3faa999132897cf1ae22b2b33372f577fec46a6e8f472d85972a990657c52",
+          "test_sha256": "24eb9b78bec63d9131c40f9629fd24f72129361f18222bc599384deff943a38a",
+          "result": "known_defect_reproduced",
+          "counts": {
+            "tests": 9,
+            "passed": 3,
+            "failures": 6,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "missingGraceDateShouldRemainZero()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "sameDateIntervalShouldAgreeAcrossDaysAndWeeks()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: expected: <0> but was: <1>"
+            },
+            {
+              "name": "doublingThePeriodShouldHalveTheGraceFraction()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.25 but got 4 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "entirePeriodOfGraceShouldRemainOne()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "oneDayOfGraceInTwoDaysShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "thirtyDaysOfGraceInTwoStandardMonthsShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "noGraceAtStartShouldRemainZero()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "oneStandardYearOfGraceInTwoStandardYearsShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "sevenDaysOfGraceInTwoWeeksShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            }
+          ]
+        },
+        {
+          "id": "calendar",
+          "source_path": "fineract-core/src/main/java/org/apache/fineract/portfolio/savings/domain/interest/PostingPeriod.java",
+          "source_sha256": "c122d2e25271ed4e2cbce5c2327932b62d02a2b7be1b8c1f2b8ececa0aec5c25",
+          "test_sha256": "92c53e38dc309aae23f4f41d47d8062810e6a0558ef3539fb547763e1f5dfd36",
+          "result": "known_defect_reproduced",
+          "counts": {
+            "tests": 13,
+            "passed": 4,
+            "failures": 9,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "leapFebruaryBoundary [1] QUATERLY",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: February 28 is not the last day of February 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "leapFebruaryBoundary [2] BI_ANNUAL",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: February 28 is not the last day of February 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "annualTargetYear [1] 2023-03-01, 2024-02-29, 366.00",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Interest before the first annual compounding boundary must be principal * rate * days / 365; actual=366.37 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "annualTargetYear [2] 2024-03-01, 2025-02-28, 365.00",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "annualTargetYear [3] 2025-03-01, 2026-02-28, 365.00",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [1] QUATERLY, 2024-06-15, 2025-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2025' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [2] BI_ANNUAL, 2024-06-15, 2025-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2025' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [3] QUATERLY, 2024-06-15, 2023-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2023' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [4] BI_ANNUAL, 2024-06-15, 2023-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2023' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [5] QUATERLY, 2025-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [6] BI_ANNUAL, 2025-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "crossYearBoundary [1] QUATERLY",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: The first fiscal boundary is February 29, 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "crossYearBoundary [2] BI_ANNUAL",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: The first fiscal boundary is February 29, 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            }
+          ]
+        }
+      ]
+    },
+    "corrected": {
+      "commit": "e4474a0f4a4c65a75e7758e47db1fd277e5fcfef",
+      "mode": "local_correction_control",
+      "original_report_sha256": "5758e86209125073cb904b5219afdc22130b2f9d796d5ff83401d33f897117b3",
+      "rules": [
+        {
+          "id": "inverse",
+          "source_path": "fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctions.java",
+          "source_sha256": "27ce0e8a55d718e6dbc10edc1764b904fb530f01c2ae8972b8fbf484ac1b1ac7",
+          "test_sha256": "2ca4f507b32e46f1cea6048b7b909e5ca59c8ef679d8140722f5a1fa43832572",
+          "result": "covered_contracts_pass",
+          "counts": {
+            "tests": 3,
+            "passed": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "nopShouldInvertPmtAtZeroInterest()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nopShouldInvertPmtWithInterest()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nopShouldInvertPmtForAnnuitiesDueWithFutureValue()",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "id": "grace",
+          "source_path": "fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/DefaultPaymentPeriodsInOneYearCalculator.java",
+          "source_sha256": "d4122807406da2254c088dda778def56b66fdada26f5363304b9173e4d2f812a",
+          "test_sha256": "24eb9b78bec63d9131c40f9629fd24f72129361f18222bc599384deff943a38a",
+          "result": "covered_contracts_pass",
+          "counts": {
+            "tests": 9,
+            "passed": 9,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "missingGraceDateShouldRemainZero()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "sameDateIntervalShouldAgreeAcrossDaysAndWeeks()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "doublingThePeriodShouldHalveTheGraceFraction()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "entirePeriodOfGraceShouldRemainOne()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "oneDayOfGraceInTwoDaysShouldBeHalfAPeriod()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "thirtyDaysOfGraceInTwoStandardMonthsShouldBeHalfAPeriod()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "noGraceAtStartShouldRemainZero()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "oneStandardYearOfGraceInTwoStandardYearsShouldBeHalfAPeriod()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "sevenDaysOfGraceInTwoWeeksShouldBeHalfAPeriod()",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "id": "calendar",
+          "source_path": "fineract-core/src/main/java/org/apache/fineract/portfolio/savings/domain/interest/PostingPeriod.java",
+          "source_sha256": "f4b30879638769e7f3c6e60b5de8b9d28e764d39a26e628f7072c2a1080232ed",
+          "test_sha256": "92c53e38dc309aae23f4f41d47d8062810e6a0558ef3539fb547763e1f5dfd36",
+          "result": "covered_contracts_pass",
+          "counts": {
+            "tests": 13,
+            "passed": 13,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "leapFebruaryBoundary [1] QUATERLY",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "leapFebruaryBoundary [2] BI_ANNUAL",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "annualTargetYear [1] 2023-03-01, 2024-02-29, 366.00",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "annualTargetYear [2] 2024-03-01, 2025-02-28, 365.00",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "annualTargetYear [3] 2025-03-01, 2026-02-28, 365.00",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [1] QUATERLY, 2024-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [2] BI_ANNUAL, 2024-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [3] QUATERLY, 2024-06-15, 2023-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [4] BI_ANNUAL, 2024-06-15, 2023-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [5] QUATERLY, 2025-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [6] BI_ANNUAL, 2025-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "crossYearBoundary [1] QUATERLY",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "crossYearBoundary [2] BI_ANNUAL",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        }
+      ]
+    },
+    "current": {
+      "commit": "3597c668fad621ac4783725e96396153c7d6e9c0",
+      "mode": "unmodified_production_source",
+      "original_report_sha256": "41ca2d5ea6ff3f56d1b802ab387befa7fc7d380dde6bcc2a2099b756061ca671",
+      "rules": [
+        {
+          "id": "inverse",
+          "source_path": "fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctions.java",
+          "source_sha256": "27ce0e8a55d718e6dbc10edc1764b904fb530f01c2ae8972b8fbf484ac1b1ac7",
+          "test_sha256": "2ca4f507b32e46f1cea6048b7b909e5ca59c8ef679d8140722f5a1fa43832572",
+          "result": "covered_contracts_pass",
+          "counts": {
+            "tests": 3,
+            "passed": 3,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "nopShouldInvertPmtAtZeroInterest()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nopShouldInvertPmtWithInterest()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nopShouldInvertPmtForAnnuitiesDueWithFutureValue()",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "id": "grace",
+          "source_path": "fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/DefaultPaymentPeriodsInOneYearCalculator.java",
+          "source_sha256": "f2d3faa999132897cf1ae22b2b33372f577fec46a6e8f472d85972a990657c52",
+          "test_sha256": "24eb9b78bec63d9131c40f9629fd24f72129361f18222bc599384deff943a38a",
+          "result": "known_defect_reproduced",
+          "counts": {
+            "tests": 9,
+            "passed": 3,
+            "failures": 6,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "missingGraceDateShouldRemainZero()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "sameDateIntervalShouldAgreeAcrossDaysAndWeeks()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: expected: <0> but was: <1>"
+            },
+            {
+              "name": "doublingThePeriodShouldHalveTheGraceFraction()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.25 but got 4 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "entirePeriodOfGraceShouldRemainOne()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "oneDayOfGraceInTwoDaysShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "thirtyDaysOfGraceInTwoStandardMonthsShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "noGraceAtStartShouldRemainZero()",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "oneStandardYearOfGraceInTwoStandardYearsShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "sevenDaysOfGraceInTwoWeeksShouldBeHalfAPeriod()",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Expected 0.5 but got 2 ==> expected: <0> but was: <-1>"
+            }
+          ]
+        },
+        {
+          "id": "calendar",
+          "source_path": "fineract-core/src/main/java/org/apache/fineract/portfolio/savings/domain/interest/PostingPeriod.java",
+          "source_sha256": "c122d2e25271ed4e2cbce5c2327932b62d02a2b7be1b8c1f2b8ececa0aec5c25",
+          "test_sha256": "92c53e38dc309aae23f4f41d47d8062810e6a0558ef3539fb547763e1f5dfd36",
+          "result": "known_defect_reproduced",
+          "counts": {
+            "tests": 13,
+            "passed": 4,
+            "failures": 9,
+            "errors": 0,
+            "skipped": 0
+          },
+          "cases": [
+            {
+              "name": "leapFebruaryBoundary [1] QUATERLY",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: February 28 is not the last day of February 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "leapFebruaryBoundary [2] BI_ANNUAL",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: February 28 is not the last day of February 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "annualTargetYear [1] 2023-03-01, 2024-02-29, 366.00",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: Interest before the first annual compounding boundary must be principal * rate * days / 365; actual=366.37 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "annualTargetYear [2] 2024-03-01, 2025-02-28, 365.00",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "annualTargetYear [3] 2025-03-01, 2026-02-28, 365.00",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [1] QUATERLY, 2024-06-15, 2025-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2025' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [2] BI_ANNUAL, 2024-06-15, 2025-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2025' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [3] QUATERLY, 2024-06-15, 2023-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2023' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [4] BI_ANNUAL, 2024-06-15, 2023-02-28",
+              "status": "failure",
+              "message": "java.time.DateTimeException: Invalid date 'February 29' as '2023' is not a leap year"
+            },
+            {
+              "name": "nonLeapFebruary [5] QUATERLY, 2025-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonLeapFebruary [6] BI_ANNUAL, 2025-06-15, 2025-02-28",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "crossYearBoundary [1] QUATERLY",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: The first fiscal boundary is February 29, 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            },
+            {
+              "name": "crossYearBoundary [2] BI_ANNUAL",
+              "status": "failure",
+              "message": "org.opentest4j.AssertionFailedError: The first fiscal boundary is February 29, 2024; businessDate=2026-06-15 ==> expected: <0> but was: <-1>"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

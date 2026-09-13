@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "algorithm": "sha256",
+  "files": {
+    "CITATION.cff": "cb8b81cf442d0e63119e5d0eec90a4751d47d1825cb2498e2bff47925a021033",
+    "LICENSE": "7e3b13f42d05b1da02165c5b0e200c9496a3e22f5642afa6b6909f3b1298cc98",
+    "NOTICE": "fc14f93bb6552523612ee79a7cc4a0d77a7ed265333212e049b06d33c14e89d2",
+    "PROVENANCE.md": "1a888afa76ef545c9b8b1e6341462c8bd1bcaf21bba8d6c9b3b000c01513bea4",
+    "README.md": "284165257993a298a129660379adf2ba629735133ee5cf4a99a5553c097a4395",
+    "evidence.json": "98f55e3180ebdce373d03f13e0311cb133efe4297827809a099ec0e0f4d8109d",
+    "index.html": "5d42d21868ad3e98caddabac356d249cf043f882536d67159d2b4f2ea60b3826",
+    "licenses/APACHE_LICENSETEXT.md": "1420334db7dcd5979afefa6ffff48d6005b7e4c6116a090322b3ddb686a51de9",
+    "licenses/LICENSE_SOURCE": "7e3b13f42d05b1da02165c5b0e200c9496a3e22f5642afa6b6909f3b1298cc98",
+    "licenses/NOTICE_SOURCE": "3e9b097df85708ed2f323ec56c2692e2dcce686a5e30969c5c096caae6fd05ca",
+    "media/README.md": "dd33dff686bbe50475a4f5eb0dce41612f554af5a3410e1591c49203a6cc367f",
+    "media/captions.en.srt": "6701355b0cdfcc524fe0be4abf6e760f6b4bfc02e94d52285922ff01d6dd961f",
+    "media/captions.en.vtt": "8aa775075cf2d40bbd33b181deedf6f4d550ee7141167ff37bbb08feb921c2d5",
+    "media/gero-calculation-checks.mp4": "2cfb57dde855e7a35500cd24ffb2a49af6ee8145e90273f51c766aa87c82662a",
+    "media/script.md": "0988747c556a14fdbc992b7c0a7ec824cd04dc6ec84cae57fbf3427ea673e6e0",
+    "media/sources.md": "284da3aaf002512d56510776f6f33a181371bc1db09745d8b716bdd2ddc83bc0",
+    "media/storyboard.json": "e4a02477b210904e5d53c4c3ac71bcdf23127620cf4cf5623c80c512858b11f2",
+    "media/thumbnail.png": "3bb7385b1c2bc55fd160065f679bbf869d24dec1dc8847636df759feb35eedc8",
+    "patches/FINERACT-2809.patch": "d99452c6bc20f9cb5206f009457d6ce3bf79e17650370a5dafb5cb1f022f1198",
+    "patches/fiscal-compounding-calendar.patch": "80fecb2382c97f268898c46d1a345682b7669c61000f6f3d2cdad50d618367fe",
+    "patches/grace-fraction.patch": "190f7912cb66b9059dda129c206c50dddbd7fbe776f8fc52ddf031fc071999b9",
+    "rules/GeroCalendarContractTest.java": "92c53e38dc309aae23f4f41d47d8062810e6a0558ef3539fb547763e1f5dfd36",
+    "rules/GeroCalendarExpandedContractTest.java": "71c9cc535a8c517ce27bdeb02ffadc40a91b53ff0a150cd1d1c2f9718c8cf4ff",
+    "rules/GeroGraceFractionContractTest.java": "24eb9b78bec63d9131c40f9629fd24f72129361f18222bc599384deff943a38a",
+    "rules/GeroInverseContractTest.java": "2ca4f507b32e46f1cea6048b7b909e5ca59c8ef679d8140722f5a1fa43832572"
+  }
+}

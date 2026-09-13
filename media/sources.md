@@ -1,0 +1,9 @@
+# Source and claim ledger
+
+1. **Observed component mismatch:** seven grace days in fourteen days; expected fraction 0.5, actual 2. Source: locally verified cycle-005/current/report.json, GeroGraceFractionContractTest, source commit 3597c668fad621ac4783725e96396153c7d6e9c0. The public release's evidence.json includes the selected native case. Classification: documented local test result, synthetic inputs, not a client transaction.
+2. **Correction outcomes:** 25 common cases and 144 additional calendar cases pass on the historical baseline with declared local candidate patches. Source: cycle-005/corrected/report.json and controls.json, verified by factory.controls. Classification: documented local native result. The 144-case grid has no complete unpatched result and is not current-upstream coverage.
+3. **Service deliverable:** version-specific checks, documented expectations, scoped mismatches, candidate corrections and reruns. Source: offer.md and current implemented workflow. Classification: offered engineering scope, not a completed paid client engagement or guaranteed outcome.
+4. **Limits:** no real customer accounts or production transactions were tested; customer losses are not established. Source: the protocol and native component test boundaries, explicitly preserved in public evidence.json. Classification: scope statement.
+5. **Upstream proof:** https://github.com/apache/fineract/pull/6409. Apache Fineract, merged 7 September 2026; live UI confirmed by this thread. This concerns the inverse helper correction only, not the grace/calendar candidates. Classification: primary public engineering record. The video does not claim all patches are merged.
+
+All spoken claims match this ledger. Figures are not extrapolated to financial losses, all deployments, or guaranteed savings. Apache licensing: https://www.apache.org/licenses/LICENSE-2.0. Independent GERO service demonstration, with disclosed synthetic narration.

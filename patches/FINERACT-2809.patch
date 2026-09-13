@@ -1,0 +1,94 @@
+diff --git a/fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctions.java b/fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctions.java
+index 8813b09629..4f6c714efb 100644
+--- a/fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctions.java
++++ b/fineract-loan/src/main/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctions.java
+@@ -54,16 +54,21 @@ public final class FinanicalFunctions {
+         return payment;
+     }
+ 
++    /**
++     * Returns the closest whole number of payments for the supplied payment amount.
++     */
+     public static int nop(final double interestRateFraction, final double emiAmount, final double principal, final double futureValue,
+             final boolean type) {
+-        double numberOfPayments = 0;
++        final double numberOfPayments;
+         if (interestRateFraction == 0) {
+-            numberOfPayments = ((Double) (-1 * (futureValue + principal) / emiAmount)).intValue();
++            numberOfPayments = -1 * (futureValue + principal) / emiAmount;
+         } else {
+             final double r1 = interestRateFraction + 1;
+-            numberOfPayments = (futureValue + principal * Math.pow(r1, emiAmount)) * interestRateFraction
+-                    / ((type ? r1 : 1) * (1 - Math.pow(r1, emiAmount)));
++            final double adjustedPayment = emiAmount * (type ? r1 : 1);
++            final double growthFactor = (adjustedPayment - interestRateFraction * futureValue)
++                    / (adjustedPayment + interestRateFraction * principal);
++            numberOfPayments = Math.log(growthFactor) / Math.log1p(interestRateFraction);
+         }
+-        return Double.valueOf(numberOfPayments).intValue();
++        return (int) Math.round(numberOfPayments);
+     }
+ }
+diff --git a/fineract-loan/src/test/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctionsTest.java b/fineract-loan/src/test/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctionsTest.java
+new file mode 100644
+index 0000000000..139162065a
+--- /dev/null
++++ b/fineract-loan/src/test/java/org/apache/fineract/portfolio/loanaccount/loanschedule/domain/FinanicalFunctionsTest.java
+@@ -0,0 +1,57 @@
++/**
++ * Licensed to the Apache Software Foundation (ASF) under one
++ * or more contributor license agreements. See the NOTICE file
++ * distributed with this work for additional information
++ * regarding copyright ownership. The ASF licenses this file
++ * to you under the Apache License, Version 2.0 (the
++ * "License"); you may not use this file except in compliance
++ * with the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing,
++ * software distributed under the License is distributed on an
++ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
++ * KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations
++ * under the License.
++ */
++package org.apache.fineract.portfolio.loanaccount.loanschedule.domain;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++
++import org.junit.jupiter.api.Test;
++
++class FinanicalFunctionsTest {
++
++    @Test
++    void nopShouldInvertPmtAtZeroInterest() {
++        double payment = FinanicalFunctions.pmt(0, 12, 1000, 0, false);
++
++        assertEquals(12, FinanicalFunctions.nop(0, payment, 1000, 0, false));
++    }
++
++    @Test
++    void nopShouldInvertPmtWithInterest() {
++        double[] rates = { 0.001, 0.01, 0.05 };
++        int[] periods = { 6, 12, 24, 36 };
++        boolean[] paymentTypes = { false, true };
++
++        for (double rate : rates) {
++            for (int period : periods) {
++                for (boolean paymentType : paymentTypes) {
++                    double payment = FinanicalFunctions.pmt(rate, period, 1000, 0, paymentType);
++
++                    assertEquals(period, FinanicalFunctions.nop(rate, payment, 1000, 0, paymentType));
++                }
++            }
++        }
++    }
++
++    @Test
++    void nopShouldInvertPmtForAnnuitiesDueWithFutureValue() {
++        double payment = FinanicalFunctions.pmt(0.01, 12, 1000, 100, true);
++
++        assertEquals(12, FinanicalFunctions.nop(0.01, payment, 1000, 100, true));
++    }
++}

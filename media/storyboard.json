@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Seven out of fourteen.",
+    "body": "A time fraction should be 0.5.",
+    "narration": "Seven days out of fourteen should be one half. In a tested grace-period calculation, the result was two.",
+    "kind": "fraction",
+    "source": "Synthetic Fineract component example"
+  },
+  {
+    "title": "Check the written rules.",
+    "body": "Your version. Your calculation conventions. Clear expectations.",
+    "narration": "GERO turns written calculation rules into software checks. We check your chosen version, test edge cases, document mismatches, and verify candidate fixes.",
+    "kind": "process",
+    "source": "GERO service scope; not a completed client project"
+  },
+  {
+    "title": "Test the correction.",
+    "body": "All passed on locally corrected code.",
+    "narration": "In this public example, twenty-five core checks passed on corrected code, plus one hundred forty-four additional calendar cases.",
+    "kind": "counts",
+    "source": "Verified correction control; extra grid is correction-only"
+  },
+  {
+    "title": "Keep the conclusion precise.",
+    "body": "Component tests. Synthetic inputs. No customer accounts tested.",
+    "narration": "These are component tests. They do not show losses at a bank.",
+    "kind": "scope",
+    "source": "Version-pinned evidence; no production impact established"
+  },
+  {
+    "title": "A check pack your team can reuse.",
+    "body": "Report. Executable tests. A scoped correction candidate.",
+    "narration": "Your team gets a clear report and executable tests to repeat after updates. See the public evidence at GERO dot U Z.",
+    "kind": "deliverable",
+    "source": "Independent GERO research and service demonstration"
+  }
+]
